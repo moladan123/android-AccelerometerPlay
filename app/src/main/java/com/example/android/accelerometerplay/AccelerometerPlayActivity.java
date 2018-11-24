@@ -219,8 +219,8 @@ public class AccelerometerPlayActivity extends Activity {
          */
         class ParticleSystem {
 
-            final int[][] lines = {{10, 10, 50, 50}, {50, 50, 100, 100},
-                    {100, 100, 150, 50}, {150, 50, 200, 100}, {200, 100, 300, 300}};
+            final int[][] lines = {{0, 100, 225, 150}, {175, 150, 225, 250},{450, 100, 750, 150},
+                                    {450, 100, 500, 250}, {925, 0, 975, 700}, {750, 0, 800, 350}};
 
             static final int NUM_PARTICLES = 1;
             private Particle mBalls[] = new Particle[NUM_PARTICLES];
@@ -431,7 +431,7 @@ public class AccelerometerPlayActivity extends Activity {
                 particleSystem.mBalls[i].setTranslationY(y);
             }
 
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < mParticleSystem.lines.length; i++) {
                 Paint myPaint = new Paint();
                 myPaint.setColor(Color.rgb(100, 100, 100));
                 myPaint.setStrokeWidth(10);
