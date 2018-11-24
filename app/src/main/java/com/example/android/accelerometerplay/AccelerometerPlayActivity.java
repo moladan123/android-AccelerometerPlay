@@ -219,7 +219,7 @@ public class AccelerometerPlayActivity extends Activity {
          */
         class ParticleSystem {
 
-            final int[][] lines = {{0, 100, 225, 150}, {175, 150, 225, 250},{450, 100, 750, 150},
+            final int[][] lines = {{0, 100, 300, 150}, {250, 150, 300, 250},{450, 100, 750, 150},
                                     {450, 100, 500, 250}, {925, 0, 975, 700}, {750, 0, 800, 350}};
 
             static final int NUM_PARTICLES = 1;
