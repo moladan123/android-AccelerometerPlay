@@ -22,6 +22,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.BitmapFactory.Options;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -30,8 +32,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
+import android.provider.SyncStateContract;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.Surface;
 import android.view.View;
@@ -52,6 +56,11 @@ import android.widget.FrameLayout;
  */
 
 public class AccelerometerPlayActivity extends Activity {
+
+    public interface Constants {
+        String LOG = "com.vogella.testapp";
+    }
+
 
     private SimulationView mSimulationView;
     private SensorManager mSensorManager;
@@ -209,7 +218,11 @@ public class AccelerometerPlayActivity extends Activity {
          * A particle system is just a collection of particles
          */
         class ParticleSystem {
-            static final int NUM_PARTICLES = 5;
+
+            final int[][] lines = {{10, 10, 50, 50}, {50, 50, 100, 100},
+                    {100, 100, 150, 50}, {150, 50, 200, 100}, {200, 100, 300, 300}};
+
+            static final int NUM_PARTICLES = 1;
             private Particle mBalls[] = new Particle[NUM_PARTICLES];
 
             ParticleSystem() {
@@ -417,6 +430,14 @@ public class AccelerometerPlayActivity extends Activity {
                 particleSystem.mBalls[i].setTranslationX(x);
                 particleSystem.mBalls[i].setTranslationY(y);
             }
+
+            for (int i = 0; i < 5; i++) {
+                Paint myPaint = new Paint();
+                myPaint.setColor(Color.rgb(100, 100, 100));
+                myPaint.setStrokeWidth(10);
+                canvas.drawRect(mParticleSystem.lines[i][0], mParticleSystem.lines[i][1], mParticleSystem.lines[i][2], mParticleSystem.lines[i][3], myPaint);
+            }
+
 
             // and make sure to redraw asap
             invalidate();
